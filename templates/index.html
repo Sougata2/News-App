@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="welcome-container-wrapper">
+        <div class="container welcome-container">
+            <h1>Welcome to Daily News<i class="fa fa-duotone fa-earth-africa"></i></h1>
+            <div class="dropdown" style="width: 20rem; margin: auto">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%">
+                    Select Date
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 100%; text-align: center">
+                    <li>
+                        <form action="{{ url_for('index') }}" method="POST">
+                            <input class="hidden" name="date_option" value="0">
+                            <button class="btn dropdown-item" type="submit">Today</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action="{{ url_for('index') }} " method="POST">
+                            <input class="hidden" name="date_option" value="1">
+                            <button class="btn dropdown-item" type="submit">Yesterday</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action="{{ url_for('index') }} " method="POST">
+                            <input class="hidden" name="date_option" value="2">
+                            <button class="btn dropdown-item" type="submit">{{ day_before_yesterday }}</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

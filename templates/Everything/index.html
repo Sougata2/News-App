@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="news-container container py-3" style="margin: auto;">
+
+    <div class="row row-cols-lg-3 row-cols-sm-1">
+        {% for card_no in page %}
+            <div class="col">
+                <div class="card mb-5 mx-auto" style="width: 20rem; height: 35rem;">
+                    <img src="{{ articles[card_no]["urlToImage"] }}" class="card-img-top" alt="..."
+                         style="height: 15rem;">
+                    <i style="font-size: 0.8rem">{{ articles[card_no]["date"] }}</i>
+                    <div class="card-body">
+                        <h5 class="card-title"
+                            style="height: 8rem; font-size: 1.1rem">{{ articles[card_no]["title"] }}</h5>
+                        {% if articles[card_no]["content"] %}
+                            <p class="card-text"
+                               style="height: 10rem; position: relative; bottom: 2rem; font-size: 1rem;">{{ articles[card_no]["content"] }}</p>
+                        {% else %}
+                            <p class="card-text" style="height: 10rem; position: relative; bottom: 2rem;">
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 70%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 20%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 30%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 60%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 70%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 40%"></button>
+                                <button type="button" class="btn btn-light"
+                                        style="background-color: #dadce0; position: relative; width: 91%"></button>
+                            </p>
+                        {% endif %}
+                        <a href="{{ articles[card_no]["url"] }}" class="btn btn-primary"
+                           style="position: absolute; bottom: 1rem;" target="_blank" rel="noopener noreferrer">Read More
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container mb-4" style="text-align: center">
+    {% if is_previous_page %}
+        <form action="{{ url_for('previous_page') }}" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-primary mx-auto"><i class="fa fa-light fa-angles-left"></i>
+            </button>
+        </form>
+    {% endif %}
+    <button type="button" class="btn btn-info">{{ page_no }}</button>
+    {% if is_next_page %}
+        <form action="{{ url_for('next_page') }}" method="POST" style="display: inline">
+            <button type="submit" class="btn btn-primary mx-auto"><i class="fa fa-light fa-angles-right"></i>
+            </button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
